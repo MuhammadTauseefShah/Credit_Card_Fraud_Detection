@@ -1,7 +1,7 @@
 
----
 
-## 📁 File 2: `requirements.txt`
+
+
 ```txt
 pandas
 numpy
