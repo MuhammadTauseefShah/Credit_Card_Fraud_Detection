@@ -1,0 +1,41 @@
+📂 Dataset Overview
+
+Name: Credit Card Fraud Detection Dataset
+
+Source: Kaggle – Credit Card Fraud Detection
+
+Size: 284,807 transactions
+
+Fraud Cases: 492 (≈0.172%) → highly imbalanced dataset
+
+📑 Dataset Content
+
+The dataset contains transactions made by European cardholders in September 2013.
+
+Features:
+
+Time: Number of seconds elapsed between the transaction and the first transaction in the dataset.
+
+V1–V28: Numerical features obtained by PCA (Principal Component Analysis) to protect confidentiality of sensitive information.
+
+Amount: Transaction amount (used for scaling in ML models).
+
+Class: Target variable (0 = Non-Fraud, 1 = Fraud).
+
+⚖️ Class Distribution
+
+Non-Fraud (0): 284,315
+
+Fraud (1): 492
+
+This imbalance makes fraud detection a challenging problem, requiring special handling techniques (e.g., under-sampling, over-sampling, or anomaly detection).
+
+🧾 Usage in Project
+
+Features Time and Amount were scaled using StandardScaler.
+
+PCA-transformed features (V1–V28) used directly.
+
+Class column is the target variable for classification models.
+
+Imbalance handled using Random Under-Sampling before training models.
