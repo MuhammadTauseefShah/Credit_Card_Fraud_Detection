@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Fraud Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-shield-alt"></i> Credit Card Fraud Detection</h1>
+            <p>Enter transaction details to check for potential fraud using a Random Forest model.</p>
+        </header>
 
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="form-grid">
+                <!-- V1-V28, Time, and Amount fields -->
+                <input type="number" step="any" name="Time" placeholder="Time (seconds)" required>
+                <input type="number" step="any" name="Amount" placeholder="Amount" required>
+                
+                {% for i in range(1, 29) %}
+                <input type="number" step="any" name="V{{i}}" placeholder="V{{i}}" required>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn-predict">
+                <i class="fas fa-search"></i> Analyze Transaction
+            </button>
+        </form>
+
+        {% if prediction_text %}
+        <div id="result" class="result {{ prediction_class }}">
+            <div class="icon">
+                {% if prediction_class == 'fraud' %}
+                <i class="fas fa-exclamation-triangle"></i>
+                {% elif prediction_class == 'safe' %}
+                <i class="fas fa-check-circle"></i>
+                {% else %}
+                <i class="fas fa-times-circle"></i>
+                {% endif %}
+            </div>
+            <div class="text">
+                <h2>{{ prediction_text }}</h2>
+                <p>{{ prediction_details }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
